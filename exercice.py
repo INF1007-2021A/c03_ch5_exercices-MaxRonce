@@ -6,29 +6,89 @@ from typing import List
 
 
 def convert_to_absolute(number: float) -> float:
-    return 0
+    if number <0 : 
+        return -number
+    else :
+        return number
 
 
 def use_prefixes() -> List[str]:
     prefixes, suffixe = 'JKLMNOPQ', 'ack'
-
-    return [""]
+    cannetons = []
+    for i in range(len(prefixes)) : 
+        cannetons.append(str(prefixes[i]+suffixe))
+    return cannetons
 
 
 def prime_integer_summation() -> int:
-    return 0
+    nb_entiers_premier = 1
+    liste_premiers = [2]
+    j = 3
+    while nb_entiers_premier <100 :
+        premier = True
+        for i in range(2,j):
+            if j%i ==0:
+                premier = False
+                break
+        if premier == True:
+            liste_premiers.append(j)
+            nb_entiers_premier +=1
+        j+=1
+    return sum(liste_premiers)
 
 
 def factorial(number: int) -> int:
-    return 0
+    factoriel = 1
+    for i in range(1,number+1):
+        factoriel *= i
+    return factoriel
+
 
 
 def use_continue() -> None:
-    pass
-
+    for i in range(1,11):
+        if i ==5 :
+            continue
+        else : 
+            print(i)
+    return ''
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    bool_list = []
+    def taille (liste):
+        if len(liste) <= 3 or len(liste) > 10 :
+            return False
+    def age_mineur(liste):
+        for i in range(len(liste)):
+            if liste[i] < 18:
+                return False
+    def age_70_50(liste):
+        for i in range(len(liste)):
+            if liste[i]>70 : 
+                for k in range(len(liste)):
+                    if liste[k] == 50:
+                        return False
+
+
+    def age_25(liste):
+        for i in range(len(liste)):
+            if liste[i] == 25:
+                return True
+    
+    for i in range(len(groups)):
+        if taille(groups[i]) == False:
+            bool_list.append(False)
+
+            pass
+        elif age_25(groups[i]) == True and taille(groups[i]) != False :
+            bool_list.append(True)
+        elif age_70_50(groups[i]) == False or age_mineur(groups[i]) == False : 
+            bool_list.append(False)
+        else : 
+            bool_list.append(True)
+        
+
+    return bool_list
 
 
 def main() -> None:
